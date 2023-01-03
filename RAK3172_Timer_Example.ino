@@ -1,3 +1,5 @@
+// see https://docs.rakwireless.com/RUI3/System/#timer
+
 #include "rak1901.h"
 #include "rak1902.h"
 
@@ -85,13 +87,11 @@ void setup() {
   rslt = api.lorawan.pfreq.set(myFreq);
   sprintf(msg, "Freq %3.3f: %s", (myFreq / 1e6), rslt ? "ok" : "x");
   Serial.println(msg);
-
   if (!rslt) failMsg("pfreq");
 
   rslt = api.lorawan.psf.set(sf);
   sprintf(msg, "SF %d: %s", sf, rslt ? "ok" : "x");
   Serial.println(msg);
-
   if (!rslt) failMsg("psf");
 
   rslt = api.lorawan.pbw.set(bw);
@@ -109,13 +109,11 @@ void setup() {
   rslt = api.lorawan.ppl.set(preamble);
   sprintf(msg, "preamble %d b: %s", preamble, rslt ? "ok" : "x");
   Serial.println(msg);
-
   if (!rslt) failMsg("ppl");
 
   rslt = api.lorawan.ptp.set(txPower);
   sprintf(msg, "TX power %d: %s", txPower, rslt ? "ok" : "x");
   Serial.println(msg);
-
   if (!rslt) failMsg("ptp");
 
   api.lorawan.registerPRecvCallback(recv_cb);
